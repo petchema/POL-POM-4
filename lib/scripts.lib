@@ -555,8 +555,8 @@ POL_System_wget ()
 
 	prev=0
 	${POL_WGET/-q} -v -c "$url" "$@" 2>&1 | \
-	while read wgetline; do
-		perc="$(echo $wgetline | grep "[0-9]\{1,2\}%" | awk '{print $7}')"
+	grep -o --line-buffered '[0-9]\{1,2\}%' | \
+	while read perc; do
 		if [ -n "$perc" -a "$perc" != "$prev" ]; then
 			POL_SetupWindow_pulse ${perc%%%}
 			prev="$perc"
