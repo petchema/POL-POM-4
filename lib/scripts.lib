@@ -554,7 +554,7 @@ POL_System_wget ()
 	POL_SetupWindow_pulsebar "$(eval_gettext 'Please wait while $APPLICATION_TITLE is downloading:')\n$FICHIER" "$TITLE"
 
 	prev=0
-	${POL_WGET/-q} -v -c "$url" "$@" |& \
+	${POL_WGET/-q} -v -c "$url" "$@" 2>&1 | \
 	while read wgetline; do
 		perc="$(echo $wgetline | grep "[0-9]\{1,2\}%" | awk '{print $7}')"
 		if [ -n "$perc" -a "$perc" != "$prev" ]; then
