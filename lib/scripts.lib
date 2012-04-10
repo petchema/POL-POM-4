@@ -565,7 +565,7 @@ POL_System_wget ()
 
 	POL_SetupWindow_pulse 100
 
-    return 0
+	return 0
 }
 POL_Shortcut_Document()
 {
