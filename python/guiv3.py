@@ -21,6 +21,7 @@
 import wx, os, getopt, sys, urllib, signal, time, string, urlparse, codecs, time, threading
 
 from subprocess import Popen,PIPE
+import time
 import lib.Variables as Variables
 import lib.lng
 lib.lng.Lang()
@@ -349,7 +350,9 @@ class POL_SetupFrame(wx.Frame): #fenêtre principale
 		if(self.ProtectedWindow == False):
 			self.Destroy()
 			self.SendBash("MSG_RECEIVED=Cancel") #Indiquera à PlayOnLinux bash qu'il faut arreter l'installation
-			os.system("kill -9 "+self.bash_pid) # Plus bourrain, mais bien plus efficace
+			os.system("kill -TERM -"+self.bash_pid)
+			time.sleep(0.3)
+			os.system("kill -KILL "+self.bash_pid) # Plus bourrain, mais bien plus efficace
 			os.remove(self.file_id) # La on est plutôt pépère pour faire ça
 		else:
 			wx.MessageBox(_("You cannot close this window").format(os.environ["APPLICATION_TITLE"]),_("Error"))
