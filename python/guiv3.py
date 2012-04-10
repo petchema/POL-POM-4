@@ -21,6 +21,7 @@
 import wx, os, getopt, sys, urllib, signal, time, string, urlparse, codecs, time, threading
 
 from subprocess import Popen,PIPE
+import time
 import lib.Variables as Variables
 import lib.lng
 lib.lng.Lang()

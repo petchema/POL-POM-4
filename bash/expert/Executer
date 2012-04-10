@@ -40,5 +40,6 @@ then
 	exit
 fi
 POL_SetupWindow_Close
+set -o monitor
 POL_Bash "$SCRIPT"
 exit 0
